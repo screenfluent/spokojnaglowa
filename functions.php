@@ -13,50 +13,51 @@ remove_action('wp_head', 'feed_links', 2);
 remove_action('wp_head', 'feed_links_extra', 3);
 remove_action('wp_head', 'wlwmanifest_link');
 remove_action('wp_head', 'rsd_link');
-// remove_action('wp_head', 'wp_generator'); // Commented out this line
 remove_action('wp_head', 'rest_output_link_wp_head', 10);
 remove_action('wp_head', 'wp_oembed_add_discovery_links', 10);
 remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
 
 // Remove default WordPress styles
+add_action( 'wp_print_styles', 'remove_block_css' );
 function remove_block_css() {
     wp_dequeue_style( 'wp-block-library' );
     wp_dequeue_style( 'wp-block-library-theme' );
     wp_dequeue_style( 'wp-block-library-css' );
 }
-add_action( 'wp_print_styles', 'remove_block_css' );
 
 remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
 remove_action( 'wp_enqueue_scripts', 'wp_enqueue_classic_theme_styles' );
 
 // Remove WordPress version numbers
+add_filter('the_generator', 'remove_version');
 function remove_version() {
     return '';
 }
-add_filter('the_generator', 'remove_version');
 
+add_filter('the_generator', 'remove_version_from_rss');
 function remove_version_from_rss() {
     return '';
 }
-add_filter('the_generator', 'remove_version_from_rss');
 
+add_filter('style_loader_src', 'remove_version_from_scripts_and_styles', 9999);
+add_filter('script_loader_src', 'remove_version_from_scripts_and_styles', 9999);
 function remove_version_from_scripts_and_styles($src) {
     if (strpos($src, 'ver=')) {
         $src = remove_query_arg('ver', $src);
     }
     return $src;
 }
-add_filter('style_loader_src', 'remove_version_from_scripts_and_styles', 9999);
-add_filter('script_loader_src', 'remove_version_from_scripts_and_styles', 9999);
 
 // Add custom styles
+add_action('wp_enqueue_scripts', 'enqueue_my_style');
 function enqueue_my_style() {
     wp_enqueue_style('my-style', get_template_directory_uri() . '/style.css');
 }
-add_action('wp_enqueue_scripts', 'enqueue_my_style');
 
 add_theme_support( 'title-tag' );
 
+// Generate breadcrumb structured data
+add_action('wp_head', 'generate_breadcrumb_structured_data');
 function generate_breadcrumb_structured_data() {
     // Get the post type
     $post_type = get_post_type();
@@ -108,4 +109,12 @@ function generate_breadcrumb_structured_data() {
 
     // Output the breadcrumb structured data
     echo '<script type="application/ld+json">' . $breadcrumb_json . '</script>';
+}
+
+// Change author base
+add_action('init', 'custom_author_base');
+function custom_author_base() {
+    global $wp_rewrite;
+    $author_slug = 'profile'; // change 'profile' to whatever you want the slug to be
+    $wp_rewrite->author_base = $author_slug;
 }
