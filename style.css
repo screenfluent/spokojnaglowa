@@ -4,3 +4,26 @@ Author: Szymon Rączka
 Description: A minimalist and serene theme designed to provide a calm and focused user experience. Built with simplicity and ease of navigation in mind, it's the perfect starting point for a site that values content and clarity above all.
 Version: 1.0
 */
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 0 1em;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0 0 1.5em;
+}
+
+a {
+    color: #007acc;
+}
+
+a:hover {
+    color: #00a7e1;
+}
