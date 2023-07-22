@@ -115,6 +115,6 @@ function generate_breadcrumb_structured_data() {
 add_action('init', 'custom_author_base');
 function custom_author_base() {
     global $wp_rewrite;
-    $author_slug = 'profile'; // change 'profile' to whatever you want the slug to be
+    $author_slug = 'autor'; // change 'profile' to whatever you want the slug to be
     $wp_rewrite->author_base = $author_slug;
 }
