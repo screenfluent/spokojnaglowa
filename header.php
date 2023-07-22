@@ -10,8 +10,8 @@
         <nav>
             <ul>
                 <li><a href="<?php echo esc_url(home_url('/')); ?>">Strona główna</a></li>
-                <li><a href="<?php echo esc_url(home_url('/kim-jestesmy')); ?>">Kim Jesteśmy</a></li>
-                <li><a href="<?php echo esc_url(home_url('/kontakt')); ?>">Kontakt</a></li>
+                <li><a href="<?php echo esc_url(home_url('#')); ?>">Kim Jesteśmy</a></li>
+                <li><a href="<?php echo esc_url(home_url('#')); ?>">Kontakt</a></li>
             </ul>
         </nav>
     </header>
