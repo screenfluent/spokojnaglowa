@@ -74,7 +74,7 @@ function generate_breadcrumb_structured_data() {
             array(
                 "@type" => "ListItem",
                 "position" => 1,
-                "name" => "Home",
+                "name" => "Spokojna Głowa",
                 "item" => get_home_url()
             ),
             array(
