@@ -66,6 +66,11 @@ function generate_breadcrumb_structured_data() {
     // Get the post title
     $post_title = get_the_title();
 
+    // Get the post author
+    $author_id = get_the_author_meta('ID');
+    $author_name = get_the_author_meta('display_name');
+    $author_link = get_author_posts_url($author_id);
+
     // Construct the breadcrumb
     $breadcrumb = array(
         "@context" => "https://schema.org",
@@ -86,6 +91,12 @@ function generate_breadcrumb_structured_data() {
             array(
                 "@type" => "ListItem",
                 "position" => 3,
+                "name" => $author_name,
+                "item" => $author_link
+            ),
+            array(
+                "@type" => "ListItem",
+                "position" => 4,
                 "name" => $post_title,
                 "item" => get_permalink()
             )
