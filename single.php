@@ -6,10 +6,18 @@
   <ol>
     <li><a href="<?php echo get_home_url(); ?>">Spokojna Głowa</a></li>
     <li><a href="<?php echo get_post_type_archive_link(get_post_type()); ?>">Wpisy</a></li>
-    <li><a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"><?php the_author(); ?></a></li>
+    <li>
+        <?php 
+            $author_id = get_the_author_meta('ID');
+            $author_name = get_the_author_meta('display_name');
+            $author_link = get_author_posts_url($author_id);
+            echo "Author ID: " . $author_id . ", Author Name: " . $author_name . ", Author Link: " . $author_link;
+        ?>
+    </li>
     <li><?php the_title(); ?></li>
   </ol>
 </nav>
+
 
 <article>
     <header>
