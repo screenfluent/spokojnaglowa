@@ -2,22 +2,16 @@
 
 <?php generate_breadcrumb_structured_data(); ?>
 
+<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+
 <nav aria-label="breadcrumb">
   <ol>
     <li><a href="<?php echo get_home_url(); ?>">Spokojna Głowa</a></li>
     <li><a href="<?php echo get_post_type_archive_link(get_post_type()); ?>">Wpisy</a></li>
-    <li>
-        <?php 
-            $author_id = get_the_author_meta('ID');
-            $author_name = get_the_author_meta('display_name');
-            $author_link = get_author_posts_url($author_id);
-            echo "Author ID: " . $author_id . ", Author Name: " . $author_name . ", Author Link: " . $author_link;
-        ?>
-    </li>
+    <li><a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"><?php the_author(); ?></a></li>
     <li><?php the_title(); ?></li>
   </ol>
 </nav>
-
 
 <article>
     <header>
@@ -34,12 +28,10 @@
         </p>
     </header>
 
-    <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-        <section id="intro">
-            <h2>Introduction</h2>
-            <?php the_content(); ?>
-        </section>
-    <?php endwhile; endif; ?>
+    <section id="intro">
+        <h2>Introduction</h2>
+        <?php the_content(); ?>
+    </section>
 
     <!-- Add more sections as needed -->
 
@@ -52,5 +44,7 @@
     <h3>About the Author</h3>
     <p><?php the_author_meta('description'); ?></p>
 </aside>
+
+<?php endwhile; endif; ?>
 
 <?php get_footer(); ?>
