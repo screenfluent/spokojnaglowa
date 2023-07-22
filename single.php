@@ -1,5 +1,7 @@
 <?php get_header(); ?>
 
+<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+
 <?php generate_breadcrumb_structured_data(); ?>
 
 <nav aria-label="breadcrumb">
@@ -12,10 +14,10 @@
 </nav>
 
 <article>
-    <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-        <h1><?php the_title(); ?></h1>
-        <?php the_content(); ?>
-    <?php endwhile; endif; ?>
+    <h1><?php the_title(); ?></h1>
+    <?php the_content(); ?>
 </article>
+
+<?php endwhile; endif; ?>
 
 <?php get_footer(); ?>
