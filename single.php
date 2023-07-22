@@ -6,6 +6,7 @@
   <ol>
     <li><a href="<?php echo get_home_url(); ?>">Spokojna Głowa</a></li>
     <li><a href="<?php echo get_post_type_archive_link(get_post_type()); ?>"><?php echo get_post_type_object(get_post_type())->labels->name; ?></a></li>
+    <li><a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"><?php the_author(); ?></a></li>
     <li><a href="<?php echo get_permalink(); ?>"><?php the_title(); ?></a></li>
   </ol>
 </nav>
