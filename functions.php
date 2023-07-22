@@ -57,3 +57,44 @@ add_action('wp_enqueue_scripts', 'enqueue_my_style');
 
 add_theme_support( 'title-tag' );
 
+function generate_breadcrumb_structured_data() {
+    // Get the post type
+    $post_type = get_post_type();
+    $post_type_object = get_post_type_object($post_type);
+    $post_type_archive = get_post_type_archive_link($post_type);
+
+    // Get the post title
+    $post_title = get_the_title();
+
+    // Construct the breadcrumb
+    $breadcrumb = array(
+        "@context" => "https://schema.org",
+        "@type" => "BreadcrumbList",
+        "itemListElement" => array(
+            array(
+                "@type" => "ListItem",
+                "position" => 1,
+                "name" => "Home",
+                "item" => get_home_url()
+            ),
+            array(
+                "@type" => "ListItem",
+                "position" => 2,
+                "name" => $post_type_object->labels->name,
+                "item" => $post_type_archive
+            ),
+            array(
+                "@type" => "ListItem",
+                "position" => 3,
+                "name" => $post_title,
+                "item" => get_permalink()
+            )
+        )
+    );
+
+    // Encode the breadcrumb in JSON-LD format
+    $breadcrumb_json = json_encode($breadcrumb);
+
+    // Output the breadcrumb structured data
+    echo '<script type="application/ld+json">' . $breadcrumb_json . '</script>';
+}
