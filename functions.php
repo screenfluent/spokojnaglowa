@@ -57,28 +57,3 @@ add_action('wp_enqueue_scripts', 'enqueue_my_style');
 
 add_theme_support( 'title-tag' );
 
-function get_breadcrumb() {
-    echo '<ol itemscope itemtype="https://schema.org/BreadcrumbList">';
-    echo '<li itemprop="itemListElement" itemscope
-      itemtype="https://schema.org/ListItem"><a itemtype="https://schema.org/WebPage" 
-      itemprop="item" href="'.home_url().'" rel="nofollow"><span itemprop="name">Home</span></a><meta itemprop="position" content="1" /></li>';
-    if (is_category() || is_single()) {
-        echo "<li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'>&nbsp;&nbsp;&#187;&nbsp;&nbsp;";
-        the_category(' &bull; ');
-            if (is_single()) {
-                echo "<li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'>&nbsp;&nbsp;&#187;&nbsp;&nbsp;<span itemprop='name'>";
-                the_title();
-                echo "</span><meta itemprop='position' content='3' /></li>";
-            }
-    } elseif (is_page()) {
-        echo "<li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'>&nbsp;&nbsp;&#187;&nbsp;&nbsp;<span itemprop='name'>";
-        echo the_title();
-        echo "</span><meta itemprop='position' content='2' /></li>";
-    } elseif (is_search()) {
-        echo "<li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'>&nbsp;&nbsp;&#187;&nbsp;&nbsp;Search Results for... ";
-        echo '"<em>';
-        echo the_search_query();
-        echo '</em>"</li>';
-    }
-    echo '</ol>';
-}
