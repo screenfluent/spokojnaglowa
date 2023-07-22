@@ -13,16 +13,16 @@ remove_action('wp_head', 'feed_links', 2);
 remove_action('wp_head', 'feed_links_extra', 3);
 remove_action('wp_head', 'wlwmanifest_link');
 remove_action('wp_head', 'rsd_link');
-remove_action('wp_head', 'wp_generator');
+// remove_action('wp_head', 'wp_generator'); // Commented out this line
 remove_action('wp_head', 'rest_output_link_wp_head', 10);
 remove_action('wp_head', 'wp_oembed_add_discovery_links', 10);
 remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
 
 // Remove default WordPress styles
 function remove_block_css() {
-	wp_dequeue_style( 'wp-block-library' );
-	wp_dequeue_style( 'wp-block-library-theme' );
-	wp_dequeue_style( 'wp-block-library-css' );
+    wp_dequeue_style( 'wp-block-library' );
+    wp_dequeue_style( 'wp-block-library-theme' );
+    wp_dequeue_style( 'wp-block-library-css' );
 }
 add_action( 'wp_print_styles', 'remove_block_css' );
 
