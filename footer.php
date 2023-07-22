@@ -1,6 +1,6 @@
 </main>
     <footer>
-        <p>Copyright &copy; <?php echo date('Y'); ?> Your Name</p>
+        <p>Copyright &copy; <?php echo date('Y'); ?> Spokojna Głowa</p>
     </footer>
     <?php wp_footer(); ?>
 </body>
