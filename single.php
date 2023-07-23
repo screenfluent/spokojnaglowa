@@ -41,7 +41,7 @@
 </article>
 
 <aside>
-    <h3>O autorzeee</h3>
+    <h3>O autorzeee sdfsdsfafd</h3>
     <p><?php the_author_meta('description'); ?></p>
 </aside>
 
