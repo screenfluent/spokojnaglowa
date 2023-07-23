@@ -118,3 +118,4 @@ function custom_author_base() {
     $author_slug = 'autor'; // change 'profile' to whatever you want the slug to be
     $wp_rewrite->author_base = $author_slug;
 }
+trigger_error('Debug log check.');
