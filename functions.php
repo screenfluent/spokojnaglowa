@@ -61,8 +61,8 @@ add_action('wp_head', 'generate_breadcrumb_structured_data');
 function generate_breadcrumb_structured_data() {
     // Get the post type
     $post_type = get_post_type();
-    $post_type_object = get_post_type_object($post_type);
-    $post_type_archive = get_post_type_archive_link($post_type);
+    $post_type_object = !empty($post_type) ? get_post_type_object($post_type) : null;
+    $post_type_archive = !empty($post_type) ? get_post_type_archive_link($post_type) : '';
 
     // Get the post title
     $post_title = get_the_title();
@@ -86,7 +86,7 @@ function generate_breadcrumb_structured_data() {
             array(
                 "@type" => "ListItem",
                 "position" => 2,
-                "name" => $post_type_object->labels->name,
+                "name" => $post_type_object ? $post_type_object->labels->name : '',
                 "item" => $post_type_archive
             ),
             array(
@@ -110,6 +110,7 @@ function generate_breadcrumb_structured_data() {
     // Output the breadcrumb structured data
     echo '<script type="application/ld+json">' . $breadcrumb_json . '</script>';
 }
+
 
 // Change author base
 add_action('init', 'custom_author_base');
