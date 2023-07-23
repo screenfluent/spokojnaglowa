@@ -41,7 +41,7 @@
 </article>
 
 <aside>
-    <h3>About the Author</h3>
+    <h3>O autorze</h3>
     <p><?php the_author_meta('description'); ?></p>
 </aside>
 
