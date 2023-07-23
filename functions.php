@@ -47,7 +47,6 @@ function remove_version_from_scripts_and_styles($src) {
     }
     return $src;
 }
-trigger_error('Debug log check.');
 
 // Add custom styles
 add_action('wp_enqueue_scripts', 'enqueue_my_style');
