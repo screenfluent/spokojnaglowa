@@ -41,7 +41,7 @@
 </article>
 
 <aside>
-    <h3>O autorzeee sdfsdsfafd</h3>
+    <h3>Słów kilka o <?php the_author(); ?></h3>
     <p><?php the_author_meta('description'); ?></p>
 </aside>
 
