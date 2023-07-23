@@ -47,6 +47,7 @@ function remove_version_from_scripts_and_styles($src) {
     }
     return $src;
 }
+trigger_error('Debug log check.');
 
 // Add custom styles
 add_action('wp_enqueue_scripts', 'enqueue_my_style');
@@ -118,4 +119,3 @@ function custom_author_base() {
     $author_slug = 'autor'; // change 'profile' to whatever you want the slug to be
     $wp_rewrite->author_base = $author_slug;
 }
-trigger_error('Debug log check.');
